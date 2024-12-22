@@ -1,75 +1,51 @@
 import java.util.Scanner;
 
     public class EscolhaFibonacci {
-
         static class SequenciaFibonacci {
+            static class Main {
+                 static class Fibonacci {
+                     public static void main(String[] args) {
 
-            public static class Main {
+                            System.out.println("_".repeat(30));
 
-                public static class Fibonacci {
-                    public static void main(String[] args) {
-                        System.out.println("_".repeat(30));
+                            Scanner scanner = new Scanner(System.in);
 
-                        Scanner scanner = new Scanner(System.in);
-                        System.out.print("Insira um número não negativo para verificar a sequência de Fibonacci: ");
-                        int n = scanner.nextInt();
+                            System.out.println("Quantas pessoas vão participar?");
+                            int quantidadePessoas = scanner.nextInt();
 
-                        if (n < 0) {
-                            System.out.println("Por favor, insira um número não negativo.");
-                        } else {
-                            if (isFibonacci(n)) {
-                                System.out.println("O número " + n + " pertence à sequência de Fibonacci.");
-                                System.out.println("~".repeat(30));
-                                printFibonacciSequence(n);
-                            } else {
-                                System.out.println("O número " + n + " não pertence à sequência de Fibonacci.");
+                            for (int i = 1; i <= quantidadePessoas; i++) {
+                                System.out.println("Pessoa " + i + ", insira o número para calcular o Fibonacci:");
+                                int n = scanner.nextInt();
+                                System.out.println("Fibonacci de " + n + " (Iterativo): " + fibonacciIterativo(n));
+                                System.out.println("Fibonacci de " + n + " (Recursivo): " + fibonacciRecursivo(n));
+                                System.out.println();
                             }
+
+                            scanner.close();
                         }
 
-                        scanner.close();
-                    }
+                        public static int fibonacciIterativo(int n) {
+                            if (n == 0) return 0;
+                            if (n == 1) return 1;
 
-                    public static boolean isFibonacci(int num) {
-                        int a = 0, b = 1;
-                        if (num == a || num == b) {
-                            return true;
-                        }
-
-                        int fib = a + b;
-                        while (fib <= num) {
-                            if (fib == num) {
-                                return true;
+                            int a = 0, b = 1;
+                            for (int i = 2; i <= n; i++) {
+                                int temp = a + b;
+                                a = b;
+                                b = temp;
                             }
-                            a = b;
-                            b = fib;
-                            fib = a + b;
-                        }
-                        return false;
-                    }
-
-                    public static void printFibonacciSequence(int n) {
-                        int t1 = 0, t2 = 1;
-                        System.out.print(t1);
-
-                        if (n > 0) {
-                            System.out.print(" -> " + t2);
+                            return b;
                         }
 
-                        while (true) {
-                            int t3 = t1 + t2;
-                            if (t3 > n) {
-                                break;
-                            }
-                            System.out.print(" -> " + t3);
-                            t1 = t2;
-                            t2 = t3;
+                        public static int fibonacciRecursivo(int n) {
+                            if (n == 0) return 0;
+                            if (n == 1) return 1;
+                            return fibonacciRecursivo(n - 1) + fibonacciRecursivo(n - 2);
                         }
-                        System.out.println();
+
+
                     }
                 }
             }
-
         }
-
-    }
 
